@@ -69,6 +69,11 @@ class HomeViewModel @Inject constructor() : ViewModel() {
             "Use MVI framework orbit MVI",
             Route.Post
         ),
+        HomeItem(
+            3,
+            "Drag And Drop Simple",
+            "Drag And Drop Simple",
+            Route.DragAndDropSimple
+        )
     )
-
 }

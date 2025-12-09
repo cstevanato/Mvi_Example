@@ -15,6 +15,7 @@ import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 import androidx.savedstate.serialization.SavedStateConfiguration
+import com.example.portfolio.mvi_example.feature.drag_and_drop.DragAndDropSimpleScreen
 import com.example.portfolio.mvi_example.feature.login.presentation.LoginCore
 import com.example.portfolio.mvi_example.feature.home.presentation.HomeCore
 import com.example.portfolio.mvi_example.feature.post.presentation.PostScreen
@@ -31,6 +32,7 @@ fun AppNavigation(modifier: Modifier = Modifier) {
                     subclass(Route.Home::class, Route.Home.serializer())
                     subclass(Route.Post::class, Route.Post.serializer())
                     subclass(Route.Login::class, Route.Login.serializer())
+                    subclass(Route.DragAndDropSimple::class, Route.DragAndDropSimple.serializer())
                 }
             }
         },
@@ -68,6 +70,9 @@ fun AppNavigation(modifier: Modifier = Modifier) {
                 ) {
                     rootBackStack.removeLastOrNull()
                 }
+            }
+            entry<Route.DragAndDropSimple> {
+                DragAndDropSimpleScreen()
             }
         },
         transitionSpec = {
