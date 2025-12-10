@@ -19,4 +19,6 @@ sealed interface Route : NavKey {
 
     @Serializable
     data object TodoIntents : Route
+    @Serializable
+    data object Lottie : Route
 }

@@ -2,11 +2,9 @@ package com.example.portfolio.mvi_example.feature.home.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.portfolio.mvi_example.ui.theme.Route
+import com.example.portfolio.mvi_example.itemsMenu
 import dagger.hilt.android.lifecycle.HiltViewModel
 import jakarta.inject.Inject
-import kotlinx.collections.immutable.ImmutableList
-import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -46,7 +44,7 @@ class HomeViewModel @Inject constructor() : ViewModel() {
         viewModelScope.launch {
             _state.update { it.copy(isLoading = true) }
             delay(1000)
-            val items = items()
+            val items = itemsMenu()
             _state.update {
                 it.copy(
                     items = items,
@@ -55,31 +53,4 @@ class HomeViewModel @Inject constructor() : ViewModel() {
             }
         }
     }
-
-    private fun items(): ImmutableList<HomeItem> = persistentListOf(
-        HomeItem(
-            1,
-            "Example MVI - Login",
-            "Use MVI manually, with stateFlow and channel.",
-            Route.Login
-        ),
-        HomeItem(
-            2,
-            "Example MVI - View Post",
-            "Use MVI framework orbit MVI",
-            Route.Post
-        ),
-        HomeItem(
-            3,
-            "Example MVI - View Todo",
-            "Use MVI another example",
-            Route.TodoIntents
-        ),
-        HomeItem(
-            4,
-            "Drag And Drop Simple",
-            "Drag And Drop Simple",
-            Route.DragAndDropSimple
-        )
-    )
 }
