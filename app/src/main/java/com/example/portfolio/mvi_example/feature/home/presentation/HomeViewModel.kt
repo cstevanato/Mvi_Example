@@ -71,6 +71,12 @@ class HomeViewModel @Inject constructor() : ViewModel() {
         ),
         HomeItem(
             3,
+            "Example MVI - View Todo",
+            "Use MVI another example",
+            Route.TodoIntents
+        ),
+        HomeItem(
+            4,
             "Drag And Drop Simple",
             "Drag And Drop Simple",
             Route.DragAndDropSimple

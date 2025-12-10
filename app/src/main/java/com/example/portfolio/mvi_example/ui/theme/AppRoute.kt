@@ -16,4 +16,7 @@ sealed interface Route : NavKey {
 
     @Serializable
     data object DragAndDropSimple : Route
+
+    @Serializable
+    data object TodoIntents : Route
 }

@@ -96,6 +96,11 @@ dependencies {
     // Immutable
     implementation(libs.kotlinx.collections.immutable)
 
+    // room database
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    ksp(libs.room.ksp)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

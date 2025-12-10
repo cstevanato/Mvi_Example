@@ -18,6 +18,7 @@ import androidx.savedstate.serialization.SavedStateConfiguration
 import com.example.portfolio.mvi_example.feature.drag_and_drop.DragAndDropSimpleScreen
 import com.example.portfolio.mvi_example.feature.login.presentation.LoginCore
 import com.example.portfolio.mvi_example.feature.home.presentation.HomeCore
+import com.example.portfolio.mvi_example.feature.mvi.view.TodoCore
 import com.example.portfolio.mvi_example.feature.post.presentation.PostScreen
 import com.example.portfolio.mvi_example.ui.theme.Route
 import kotlinx.serialization.modules.SerializersModule
@@ -73,6 +74,9 @@ fun AppNavigation(modifier: Modifier = Modifier) {
             }
             entry<Route.DragAndDropSimple> {
                 DragAndDropSimpleScreen()
+            }
+            entry<Route.TodoIntents> {
+                TodoCore(modifier = Modifier.fillMaxSize())
             }
         },
         transitionSpec = {
