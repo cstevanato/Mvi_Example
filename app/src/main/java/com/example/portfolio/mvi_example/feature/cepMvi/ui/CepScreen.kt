@@ -41,104 +41,81 @@ import com.example.portfolio.mvi_example.feature.cepMvi.domain.model.Address
 import kotlinx.coroutines.flow.Flow
 
 @Composable
-fun CepScreen(
-    modifier: Modifier = Modifier,
-    viewModel: CepViewModel = hiltViewModel()
-) {
+fun CepScreen(modifier: Modifier = Modifier, viewModel: CepViewModel = hiltViewModel()) {
     HandleEvents(viewModel.effect)
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-    CepContent(
-        modifier = modifier,
-        uiState = uiState,
-        onIntent = viewModel::setIntent
-    )
+    CepContent(modifier = modifier, uiState = uiState, onIntent = viewModel::setIntent)
 }
 
 @Composable
-fun CepContent(
-    modifier: Modifier = Modifier,
-    uiState: CepUiState,
-    onIntent: (CepIntent) -> Unit
-) {
+fun CepContent(modifier: Modifier = Modifier, uiState: CepUiState, onIntent: (CepIntent) -> Unit) {
     Column(
-        modifier = modifier
-            .fillMaxWidth()
-            .height(320.dp)
-            .padding(horizontal = 15.dp, vertical = 10.dp),
-        verticalArrangement = Arrangement.spacedBy(10.dp)
+        modifier =
+            modifier.fillMaxWidth().height(320.dp).padding(horizontal = 15.dp, vertical = 10.dp),
+        verticalArrangement = Arrangement.spacedBy(10.dp),
     ) {
         Text(
             modifier = Modifier.fillMaxWidth(),
             textAlign = TextAlign.Center,
             text = "Try to find CEP",
-            style = MaterialTheme.typography.headlineSmall
+            style = MaterialTheme.typography.headlineSmall,
         )
 
         EditTextName(searchGender = { onIntent(CepIntent.SearchAddress(it)) })
 
         CepInfo(
-            modifier = Modifier
-                .fillMaxWidth()
-                .wrapContentHeight()
-            ,
+            modifier = Modifier.fillMaxWidth().wrapContentHeight(),
             isLoading = uiState.isLoading,
-            Address = uiState.address
+            Address = uiState.address,
         )
     }
 }
 
 @Composable
 fun CepInfo(modifier: Modifier, isLoading: Boolean, Address: Address?) {
-    AnimatedContent(
-        targetState = isLoading,
-        label = "Animated Content"
-    ) { targetState ->
+    AnimatedContent(targetState = isLoading, label = "Animated Content") { targetState ->
         Box(modifier = modifier) {
             if (targetState) {
-                CircularProgressIndicator(
-                    modifier = Modifier.align(Alignment.Center)
-                )
+                CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
             } else {
                 Address?.let { info ->
                     Card(
-                        colors = CardDefaults.cardColors(
-                            containerColor = when (info.ddd) {
-                                "19" -> MaterialTheme.colorScheme.primary
-                                else -> MaterialTheme.colorScheme.tertiary
-                            }
-                        ),
-                        elevation = CardDefaults.cardElevation(5.dp)
+                        colors =
+                            CardDefaults.cardColors(
+                                containerColor =
+                                    when (info.ddd) {
+                                        "19" -> MaterialTheme.colorScheme.primary
+                                        else -> MaterialTheme.colorScheme.tertiary
+                                    }
+                            ),
+                        elevation = CardDefaults.cardElevation(5.dp),
                     ) {
                         Box(modifier = Modifier.fillMaxSize()) {
-                            Column(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(4.dp)
-                            ) {
+                            Column(modifier = Modifier.fillMaxWidth().padding(4.dp)) {
                                 Text(
                                     text = "Cep: ${info.cep}",
-                                    style = MaterialTheme.typography.bodyMedium
+                                    style = MaterialTheme.typography.bodyMedium,
                                 )
                                 Text(
                                     text = "Logradouro: ${info.logradouro}",
-                                    style = MaterialTheme.typography.bodyMedium
+                                    style = MaterialTheme.typography.bodyMedium,
                                 )
                                 Text(
                                     text = "Bairro: ${info.bairro}",
-                                    style = MaterialTheme.typography.bodyMedium
+                                    style = MaterialTheme.typography.bodyMedium,
                                 )
                                 Text(
                                     text = "Localidade: ${info.localidade}",
-                                    style = MaterialTheme.typography.bodyMedium
+                                    style = MaterialTheme.typography.bodyMedium,
                                 )
                                 Text(
                                     text = "UF: ${info.uf}",
-                                    style = MaterialTheme.typography.bodyMedium
+                                    style = MaterialTheme.typography.bodyMedium,
                                 )
                                 Text(
                                     text = "DDD: ${info.ddd}",
-                                    style = MaterialTheme.typography.bodyMedium
+                                    style = MaterialTheme.typography.bodyMedium,
                                 )
                             }
                         }
@@ -148,7 +125,6 @@ fun CepInfo(modifier: Modifier, isLoading: Boolean, Address: Address?) {
         }
     }
 }
-
 
 @Composable
 fun HandleEvents(events: Flow<CepEvent>) {
@@ -167,7 +143,6 @@ fun HandleEvents(events: Flow<CepEvent>) {
     }
 }
 
-
 @Composable
 fun EditTextName(searchGender: (String) -> Unit) {
     var name by remember { mutableStateOf("") }
@@ -183,6 +158,6 @@ fun EditTextName(searchGender: (String) -> Unit) {
                 Icon(imageVector = Icons.Filled.Search, contentDescription = null)
             }
         },
-        placeholder = { Text("Enter the name") }
+        placeholder = { Text("Enter the name") },
     )
 }

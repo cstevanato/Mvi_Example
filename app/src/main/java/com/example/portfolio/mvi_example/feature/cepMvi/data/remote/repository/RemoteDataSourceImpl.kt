@@ -6,12 +6,10 @@ import io.ktor.client.call.body
 import io.ktor.client.request.get
 import javax.inject.Inject
 
-class RemoteDataSourceImpl @Inject constructor(
-    private val httpClient: HttpClient
-) : RemoteDataSource {
+class RemoteDataSourceImpl @Inject constructor(private val httpClient: HttpClient) :
+    RemoteDataSource {
     override suspend fun fetchRemoteCep(cep: String): CepResponse {
-        val client = httpClient
-            .get("https://viacep.com.br/ws/$cep/json/")
+        val client = httpClient.get("https://viacep.com.br/ws/$cep/json/")
         return client.body<CepResponse>()
     }
 }

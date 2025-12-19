@@ -26,17 +26,11 @@ abstract class BaseViewModel<UI_STATE, EFFECT, INTENT> : ViewModel() {
     }
 
     private fun subscribeIntents() {
-        viewModelScope.launch {
-            intents.collect {
-                handleIntent(it)
-            }
-        }
+        viewModelScope.launch { intents.collect { handleIntent(it) } }
     }
 
     fun setIntent(intent: INTENT) {
-        viewModelScope.launch {
-            intents.emit(intent)
-        }
+        viewModelScope.launch { intents.emit(intent) }
     }
 
     protected fun setState(reduce: UI_STATE.() -> UI_STATE) {
@@ -50,5 +44,4 @@ abstract class BaseViewModel<UI_STATE, EFFECT, INTENT> : ViewModel() {
     protected abstract fun createInitialState(): UI_STATE
 
     protected abstract fun handleIntent(intent: INTENT)
-
 }

@@ -14,9 +14,5 @@ import javax.inject.Singleton
 object PostDataModule {
     @Provides
     @Singleton
-    fun providerPostApi(
-        httpClient: HttpClient
-    ): PostApi = PostApiImpl(
-        httpClient = httpClient
-    )
+    fun providerPostApi(httpClient: HttpClient): PostApi = PostApiImpl(httpClient = httpClient)
 }

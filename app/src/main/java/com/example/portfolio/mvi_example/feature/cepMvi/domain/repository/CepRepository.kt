@@ -6,4 +6,3 @@ import kotlinx.coroutines.flow.Flow
 fun interface CepRepository {
     fun getCep(cep: String): Flow<Address>
 }
-

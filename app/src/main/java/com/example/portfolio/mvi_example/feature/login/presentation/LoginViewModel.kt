@@ -20,7 +20,6 @@ class LoginViewModel @Inject constructor() : ViewModel() {
     private val _event = Channel<LoginEvent>()
     val event = _event.receiveAsFlow()
 
-
     fun onAction(action: LoginAction) {
         when (action) {
             is LoginAction.EmailChanged -> {
@@ -47,4 +46,3 @@ class LoginViewModel @Inject constructor() : ViewModel() {
         }
     }
 }
-

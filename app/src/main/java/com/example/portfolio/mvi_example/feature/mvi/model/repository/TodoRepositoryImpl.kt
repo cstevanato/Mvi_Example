@@ -2,12 +2,10 @@ package com.example.portfolio.mvi_example.feature.mvi.model.repository
 
 import com.example.portfolio.mvi_example.feature.mvi.model.loca.Todo
 import com.example.portfolio.mvi_example.feature.mvi.model.loca.TodoDao
-import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
+import kotlinx.coroutines.flow.Flow
 
-class TodoRepositoryImpl @Inject constructor(
-    private val todoDao: TodoDao
-) : TodoRepository {
+class TodoRepositoryImpl @Inject constructor(private val todoDao: TodoDao) : TodoRepository {
     override suspend fun insert(todo: Todo) {
         todoDao.insert(todo)
     }

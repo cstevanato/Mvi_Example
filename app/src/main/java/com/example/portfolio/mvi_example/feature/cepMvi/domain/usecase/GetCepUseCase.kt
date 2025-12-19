@@ -6,4 +6,3 @@ import kotlinx.coroutines.flow.Flow
 interface GetCepUseCase {
     suspend operator fun invoke(cep: String): Flow<Result<Address>>
 }
-

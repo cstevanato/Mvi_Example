@@ -31,7 +31,7 @@ import com.example.portfolio.mvi_example.ui.theme.Route
 fun HomeCore(
     modifier: Modifier = Modifier,
     viewModel: HomeViewModel = hiltViewModel(),
-    onNavigateTo: (Route) -> Unit
+    onNavigateTo: (Route) -> Unit,
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
 
@@ -54,26 +54,17 @@ private fun HomeScreen(
     state: HomeScreenState,
     onEvent: (HomeIntent) -> Unit,
 ) {
-    Box(
-        modifier = modifier
-    ) {
+    Box(modifier = modifier) {
         when {
             state.isLoading -> {
-                CircularProgressIndicator(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .wrapContentSize()
-                )
+                CircularProgressIndicator(modifier = Modifier.fillMaxSize().wrapContentSize())
             }
 
             state.error != null -> {
                 Text(
                     text = state.error,
                     color = MaterialTheme.colorScheme.error,
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .wrapContentSize()
-                        .padding(16.dp)
+                    modifier = Modifier.fillMaxSize().wrapContentSize().padding(16.dp),
                 )
             }
 
@@ -81,11 +72,9 @@ private fun HomeScreen(
                 LazyColumn(
                     modifier = Modifier.fillMaxSize(),
                     contentPadding = PaddingValues(16.dp),
-                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                    verticalArrangement = Arrangement.spacedBy(8.dp),
                 ) {
-                    items(state.items) { item ->
-                        ListItemCard(item, onEvent)
-                    }
+                    items(state.items) { item -> ListItemCard(item, onEvent) }
                 }
             }
         }
@@ -95,26 +84,22 @@ private fun HomeScreen(
 @Composable
 fun ListItemCard(item: HomeItem, onEvent: (HomeIntent) -> Unit) {
     Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clickable(onClick = { onEvent(HomeIntent.NavigateTo(item.route)) }),
+        modifier =
+            Modifier.fillMaxWidth()
+                .clickable(onClick = { onEvent(HomeIntent.NavigateTo(item.route)) }),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp)
-        ) {
+        Column(modifier = Modifier.fillMaxWidth().padding(16.dp)) {
             Text(
                 text = item.title,
                 style = MaterialTheme.typography.titleMedium,
-                color = MaterialTheme.colorScheme.primary
+                color = MaterialTheme.colorScheme.primary,
             )
             Spacer(modifier = Modifier.height(4.dp))
             Text(
                 text = item.description,
                 style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurface
+                color = MaterialTheme.colorScheme.onSurface,
             )
         }
     }

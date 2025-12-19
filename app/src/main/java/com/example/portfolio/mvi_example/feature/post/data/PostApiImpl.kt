@@ -7,14 +7,11 @@ import io.ktor.client.request.get
 import jakarta.inject.Inject
 import kotlinx.coroutines.delay
 
-class PostApiImpl @Inject constructor(
-    private val httpClient: HttpClient
-) : PostApi {
+class PostApiImpl @Inject constructor(private val httpClient: HttpClient) : PostApi {
     override suspend fun getPosts(): List<Post> {
         delay(2000) // only for demo
-        val response = httpClient
-            .get("https://jsonplaceholder.typicode.com/posts")
-            .body<List<Post>>()
+        val response =
+            httpClient.get("https://jsonplaceholder.typicode.com/posts").body<List<Post>>()
 
         return response
     }

@@ -1,8 +1,8 @@
 package com.example.portfolio.mvi_example.di
 
+import com.example.portfolio.mvi_example.feature.post.data.PostApi
 import com.example.portfolio.mvi_example.feature.post.domain.GetPostsUseCase
 import com.example.portfolio.mvi_example.feature.post.domain.GetPostsUseCaseImpl
-import com.example.portfolio.mvi_example.feature.post.data.PostApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,4 +16,3 @@ object AppModule {
     @ViewModelScoped
     fun bindGetPosts(postApi: PostApi): GetPostsUseCase = GetPostsUseCaseImpl(postApi = postApi)
 }
-

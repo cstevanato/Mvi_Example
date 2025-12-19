@@ -33,10 +33,7 @@ import com.example.portfolio.mvi_example.feature.mvi.intent.TodoIntent
 import com.example.portfolio.mvi_example.feature.mvi.model.loca.Todo
 
 @Composable
-fun TodoCore(
-    modifier: Modifier = Modifier,
-    viewModel: TodoViewModel = hiltViewModel()
-) {
+fun TodoCore(modifier: Modifier = Modifier, viewModel: TodoViewModel = hiltViewModel()) {
     val list by viewModel.getAllTodos().collectAsState(initial = emptyList())
     TodoScreen(modifier = modifier, list = list, onIntent = viewModel::sendIntent)
 }
@@ -49,16 +46,9 @@ private fun TodoScreen(
     onIntent: (TodoIntent) -> Unit,
 ) {
     val title = remember { mutableStateOf("") }
-    Column(
-        modifier = modifier
-    ) {
+    Column(modifier = modifier) {
         if (list.isEmpty()) {
-            Box(
-                modifier = modifier
-                    .weight(1f)
-                    .fillMaxSize(),
-                contentAlignment = Alignment.Center
-            ) {
+            Box(modifier = modifier.weight(1f).fillMaxSize(), contentAlignment = Alignment.Center) {
                 Text(text = "Nothing found")
             }
         } else {
@@ -67,28 +57,29 @@ private fun TodoScreen(
                     val isChecked = remember { mutableStateOf(it.isDone) }
                     println(it)
                     Column(
-                        modifier = Modifier
-                            .combinedClickable(
-                                enabled = true,
-                                onClick = {},
-                                onLongClick = {
-                                    onIntent(TodoIntent.DeleteTodo(it))
-                                }
-                            )
-                            .fillMaxWidth()
+                        modifier =
+                            Modifier.combinedClickable(
+                                    enabled = true,
+                                    onClick = {},
+                                    onLongClick = { onIntent(TodoIntent.DeleteTodo(it)) },
+                                )
+                                .fillMaxWidth()
                     ) {
                         Row(
-                            modifier = Modifier
-                                .padding(horizontal = 12.dp, vertical = 8.dp)
-                                .fillMaxWidth(),
+                            modifier =
+                                Modifier.padding(horizontal = 12.dp, vertical = 8.dp)
+                                    .fillMaxWidth(),
                             horizontalArrangement = Arrangement.SpaceBetween,
-                            verticalAlignment = Alignment.CenterVertically
+                            verticalAlignment = Alignment.CenterVertically,
                         ) {
                             Text(text = it.title)
-                            Checkbox(checked = isChecked.value, onCheckedChange = { checked ->
-                                isChecked.value = checked
-                                onIntent(TodoIntent.UpdateTodo(it.copy(isDone = checked)))
-                            })
+                            Checkbox(
+                                checked = isChecked.value,
+                                onCheckedChange = { checked ->
+                                    isChecked.value = checked
+                                    onIntent(TodoIntent.UpdateTodo(it.copy(isDone = checked)))
+                                },
+                            )
                         }
                         HorizontalDivider()
                     }
@@ -101,16 +92,19 @@ private fun TodoScreen(
                 value = title.value,
                 onValueChange = { title.value = it },
                 modifier = Modifier.fillMaxWidth(),
-                keyboardOptions = KeyboardOptions(
-                    capitalization = KeyboardCapitalization.Words,
-                    keyboardType = KeyboardType.Text,
-                    imeAction = ImeAction.Next
-                )
+                keyboardOptions =
+                    KeyboardOptions(
+                        capitalization = KeyboardCapitalization.Words,
+                        keyboardType = KeyboardType.Text,
+                        imeAction = ImeAction.Next,
+                    ),
             )
-            Button(onClick = {
-                onIntent(TodoIntent.InsertTodo(Todo(title = title.value, isDone = false)))
-                title.value = ""
-            }) {
+            Button(
+                onClick = {
+                    onIntent(TodoIntent.InsertTodo(Todo(title = title.value, isDone = false)))
+                    title.value = ""
+                }
+            ) {
                 Text(text = "Save todo")
             }
         }

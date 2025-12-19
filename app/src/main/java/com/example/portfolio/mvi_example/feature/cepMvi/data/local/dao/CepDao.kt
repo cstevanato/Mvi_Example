@@ -9,10 +9,8 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface CepDao {
     @Query("SELECT * FROM address WHERE replace(cep, '-', '') = :cep")
-//    @Query("SELECT * FROM address WHERE cep = :cep")
+    //    @Query("SELECT * FROM address WHERE cep = :cep")
     fun getCep(cep: String): Flow<AddressEntity>
 
-    @Upsert
-    suspend fun upsertCep(cep: AddressEntity)
+    @Upsert suspend fun upsertCep(cep: AddressEntity)
 }
-

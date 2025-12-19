@@ -21,12 +21,8 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import org.orbitmvi.orbit.compose.collectAsState
 import org.orbitmvi.orbit.compose.collectSideEffect
 
-
 @Composable
-fun PostScreen(
-    viewModel: PostViewModel = hiltViewModel(),
-    modifier: Modifier = Modifier
-) {
+fun PostScreen(viewModel: PostViewModel = hiltViewModel(), modifier: Modifier = Modifier) {
 
     val state by viewModel.collectAsState()
     val context = LocalContext.current
@@ -35,14 +31,15 @@ fun PostScreen(
         items(state.posts) { post ->
             Text(
                 text = post.title,
-                style = MaterialTheme.typography.headlineLarge.copy(
-                    fontSize = 24.sp,
-                    fontWeight = FontWeight.Bold
-                )
+                style =
+                    MaterialTheme.typography.headlineLarge.copy(
+                        fontSize = 24.sp,
+                        fontWeight = FontWeight.Bold,
+                    ),
             )
             Text(
                 text = post.body,
-                style = MaterialTheme.typography.bodyMedium.copy(fontSize = 14.sp)
+                style = MaterialTheme.typography.bodyMedium.copy(fontSize = 14.sp),
             )
         }
     }

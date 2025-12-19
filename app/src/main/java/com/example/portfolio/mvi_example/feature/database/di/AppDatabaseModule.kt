@@ -17,5 +17,4 @@ object AppDatabaseModule {
     @Provides
     fun provideCepDataBase(@ApplicationContext context: Context): AppDataBase =
         AppDataBase.Companion.getInstance(context)
-
 }

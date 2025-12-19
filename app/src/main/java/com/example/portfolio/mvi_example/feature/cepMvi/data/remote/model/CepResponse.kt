@@ -17,15 +17,16 @@ data class CepResponse(
     val ddd: String,
 )
 
-fun CepResponse.toEntity() = AddressEntity(
-    cep = cep,
-    logradouro = logradouro,
-    complemento = complemento,
-    unidade = unidade,
-    bairro = bairro,
-    localidade = localidade,
-    uf = uf,
-    estado = estado,
-    regiao = regiao,
-    ddd = ddd,
-)
+fun CepResponse.toEntity() =
+    AddressEntity(
+        cep = cep,
+        logradouro = logradouro,
+        complemento = complemento,
+        unidade = unidade,
+        bairro = bairro,
+        localidade = localidade,
+        uf = uf,
+        estado = estado,
+        regiao = regiao,
+        ddd = ddd,
+    )

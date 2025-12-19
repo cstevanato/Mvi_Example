@@ -33,9 +33,7 @@ class HomeViewModel @Inject constructor() : ViewModel() {
             }
 
             is HomeIntent.NavigateTo -> {
-                viewModelScope.launch {
-                    _event.send(HomeEvent.NavigateTo(intent.route))
-                }
+                viewModelScope.launch { _event.send(HomeEvent.NavigateTo(intent.route)) }
             }
         }
     }
@@ -45,12 +43,7 @@ class HomeViewModel @Inject constructor() : ViewModel() {
             _state.update { it.copy(isLoading = true) }
             delay(1000)
             val items = itemsMenu()
-            _state.update {
-                it.copy(
-                    items = items,
-                    isLoading = false
-                )
-            }
+            _state.update { it.copy(items = items, isLoading = false) }
         }
     }
 }

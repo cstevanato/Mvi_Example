@@ -8,13 +8,17 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.devtools.ksp)
     alias(libs.plugins.dagger.hilt)
+    id("com.ncorti.ktfmt.gradle") version "0.25.0"
+}
+
+ktfmt {
+    //  googleStyle()
+    kotlinLangStyle()
 }
 
 android {
     namespace = "com.example.portfolio.mvi_example"
-    compileSdk {
-        version = release(36)
-    }
+    compileSdk { version = release(36) }
 
     defaultConfig {
         applicationId = "com.example.portfolio.mvi_example"
@@ -31,7 +35,7 @@ android {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
         }
     }
@@ -39,9 +43,7 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-    buildFeatures {
-        compose = true
-    }
+    buildFeatures { compose = true }
 }
 
 kotlin {
@@ -52,7 +54,7 @@ kotlin {
             "-XXLanguage:+PropertyParamAnnotationDefaultTargetMode",
             "-Xjvm-default=all",
             "-Xopt-in=kotlin.RequiresOptIn",
-            "-Xcontext-parameters"
+            "-Xcontext-parameters",
         )
     }
 }
@@ -104,6 +106,8 @@ dependencies {
     ksp(libs.room.ksp)
 
     implementation(libs.airbnb.lottie.compose)
+
+    //    compileOnly("com.ncorti.ktfmt.gradle:plugin:0.25.0")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

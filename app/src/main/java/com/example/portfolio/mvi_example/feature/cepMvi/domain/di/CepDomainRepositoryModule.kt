@@ -11,7 +11,5 @@ import dagger.hilt.components.SingletonComponent
 @InstallIn(SingletonComponent::class)
 abstract class CepDomainRepositoryModule {
 
-    @Binds
-    abstract fun bindCepRepository(cepRepositoryImpl: CepRepositoryImpl): CepRepository
-
+    @Binds abstract fun bindCepRepository(cepRepositoryImpl: CepRepositoryImpl): CepRepository
 }

@@ -8,5 +8,4 @@ interface LocalDatabaseResource {
     fun getCepEntity(name: String): Flow<AddressEntity>
 
     suspend fun saveCepEntity(cepEntity: AddressEntity)
-
 }

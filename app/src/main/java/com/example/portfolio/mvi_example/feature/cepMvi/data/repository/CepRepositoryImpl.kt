@@ -7,17 +7,19 @@ import com.example.portfolio.mvi_example.feature.cepMvi.data.remote.model.toEnti
 import com.example.portfolio.mvi_example.feature.cepMvi.data.remote.repository.RemoteDataSource
 import com.example.portfolio.mvi_example.feature.cepMvi.domain.model.Address
 import com.example.portfolio.mvi_example.feature.cepMvi.domain.repository.CepRepository
+import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.retryWhen
 import kotlinx.coroutines.flow.take
-import javax.inject.Inject
 
 const val TAG = "CepRepositoryImpl"
 
-class CepRepositoryImpl @Inject constructor(
+class CepRepositoryImpl
+@Inject
+constructor(
     private val localDatabaseResource: LocalDatabaseResource,
-    private val remoteDataSource: RemoteDataSource
+    private val remoteDataSource: RemoteDataSource,
 ) : CepRepository {
     override fun getCep(cep: String): Flow<Address> {
         return localDatabaseResource
@@ -42,7 +44,8 @@ class CepRepositoryImpl @Inject constructor(
     }
 
     private suspend fun fetchCep(cep: String): Address {
-        return remoteDataSource.fetchRemoteCep(cep)
+        return remoteDataSource
+            .fetchRemoteCep(cep)
             .toEntity()
             .also { localDatabaseResource.saveCepEntity(it) }
             .toCep()

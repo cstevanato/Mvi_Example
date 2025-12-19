@@ -15,6 +15,6 @@ object CepDomainUseCaseModule {
 
     @Provides
     @ViewModelScoped
-    fun bindGetCepUseCase(cepRepository: CepRepository): GetCepUseCase = GetCepUseCaseImpl(cepRepository)
-
+    fun bindGetCepUseCase(cepRepository: CepRepository): GetCepUseCase =
+        GetCepUseCaseImpl(cepRepository)
 }

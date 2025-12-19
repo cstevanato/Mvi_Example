@@ -21,11 +21,10 @@ class MainActivity : ComponentActivity() {
         setContent {
             Mvi_ExampleTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    CepScreen( modifier = Modifier.padding(innerPadding))
-//                    AppNavigation(modifier = Modifier.padding(innerPadding))
+                    CepScreen(modifier = Modifier.padding(innerPadding))
+                    //                    AppNavigation(modifier = Modifier.padding(innerPadding))
                 }
             }
         }
     }
-
 }

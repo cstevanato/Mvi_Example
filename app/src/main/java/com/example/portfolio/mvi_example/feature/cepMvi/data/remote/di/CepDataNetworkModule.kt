@@ -15,10 +15,7 @@ object CepDataNetworkModule {
 
     @Provides
     @Singleton
-    fun provideNetworkDataSource(
-        httpClient: HttpClient
-    ): RemoteDataSource {
+    fun provideNetworkDataSource(httpClient: HttpClient): RemoteDataSource {
         return RemoteDataSourceImpl(httpClient)
     }
-
 }

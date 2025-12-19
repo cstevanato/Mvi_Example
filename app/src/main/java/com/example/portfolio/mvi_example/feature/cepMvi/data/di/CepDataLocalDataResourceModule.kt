@@ -12,6 +12,7 @@ import dagger.hilt.components.SingletonComponent
 abstract class CepDataLocalDataResourceModule {
 
     @Binds
-    abstract fun bindCepLocalResource(cepLocalDataBaseImpl: LocalDatabaseResourceImpl): LocalDatabaseResource
-
+    abstract fun bindCepLocalResource(
+        cepLocalDataBaseImpl: LocalDatabaseResourceImpl
+    ): LocalDatabaseResource
 }

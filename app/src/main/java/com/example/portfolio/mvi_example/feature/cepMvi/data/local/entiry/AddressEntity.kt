@@ -19,16 +19,16 @@ data class AddressEntity(
     @ColumnInfo(name = "ddd") val ddd: String,
 )
 
-fun AddressEntity.toCep() = Address(
-    cep = cep,
-    logradouro = logradouro,
-    complemento = complemento,
-    unidade = unidade,
-    bairro = bairro,
-    localidade = localidade,
-    uf = uf,
-    estado = estado,
-    regiao = regiao,
-    ddd = ddd,
-)
-
+fun AddressEntity.toCep() =
+    Address(
+        cep = cep,
+        logradouro = logradouro,
+        complemento = complemento,
+        unidade = unidade,
+        bairro = bairro,
+        localidade = localidade,
+        uf = uf,
+        estado = estado,
+        regiao = regiao,
+        ddd = ddd,
+    )

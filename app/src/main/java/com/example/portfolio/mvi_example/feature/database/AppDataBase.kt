@@ -19,5 +19,6 @@ abstract class AppDataBase : RoomDatabase() {
     }
 
     abstract fun todoDao(): TodoDao
+
     abstract fun cepDao(): CepDao
 }

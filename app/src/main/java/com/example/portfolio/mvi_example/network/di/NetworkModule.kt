@@ -15,8 +15,8 @@ import io.ktor.client.plugins.logging.Logger
 import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.request.header
 import io.ktor.serialization.kotlinx.json.json
-import kotlinx.serialization.json.Json
 import javax.inject.Singleton
+import kotlinx.serialization.json.Json
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -34,9 +34,7 @@ object NetworkModule {
     @Singleton
     fun provideHttpClient(json: Json): HttpClient {
         return HttpClient(Android) {
-            install(ContentNegotiation) {
-                json(json)
-            }
+            install(ContentNegotiation) { json(json) }
 
             install(Logging) {
                 logger = Logger.ANDROID
@@ -49,10 +47,7 @@ object NetworkModule {
                 socketTimeoutMillis = 15000
             }
 
-            defaultRequest {
-                header("Content-Type", "application/json")
-            }
+            defaultRequest { header("Content-Type", "application/json") }
         }
     }
-
 }

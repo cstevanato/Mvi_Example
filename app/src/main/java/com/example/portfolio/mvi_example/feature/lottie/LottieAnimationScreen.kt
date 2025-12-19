@@ -24,13 +24,11 @@ import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.portfolio.mvi_example.R
 
 @Composable
-fun LottieAnimationScreen(modifier: Modifier= Modifier) {
+fun LottieAnimationScreen(modifier: Modifier = Modifier) {
     val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.success))
     var isPlaying by remember { mutableStateOf(false) }
-    val progress by animateLottieCompositionAsState(
-        composition = composition,
-        isPlaying = isPlaying
-    )
+    val progress by
+        animateLottieCompositionAsState(composition = composition, isPlaying = isPlaying)
 
     LaunchedEffect(key1 = progress) {
         if (progress == 0f) isPlaying = true
@@ -40,16 +38,13 @@ fun LottieAnimationScreen(modifier: Modifier= Modifier) {
     Column(
         modifier = modifier.fillMaxSize().background(Color.White),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Center,
     ) {
         LottieAnimation(
             modifier = Modifier.size(200.dp),
             composition = composition,
-            progress = { progress }
+            progress = { progress },
         )
-        Button(onClick = { isPlaying = true }) {
-            Text("Play Again")
-        }
+        Button(onClick = { isPlaying = true }) { Text("Play Again") }
     }
-
 }

@@ -18,14 +18,10 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 fun LoginCore(
     viewModel: LoginViewModel = hiltViewModel(),
     modifier: Modifier = Modifier,
-    onNavigateToBack: () -> Unit
+    onNavigateToBack: () -> Unit,
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
-    LoginScreen(
-        state = state,
-        onAction = viewModel::onAction,
-        modifier = modifier
-    )
+    LoginScreen(state = state, onAction = viewModel::onAction, modifier = modifier)
     LaunchedEffect(Unit) {
         viewModel.event.collect { event ->
             when (event) {
@@ -35,46 +31,40 @@ fun LoginCore(
             }
         }
     }
-
 }
 
 @Composable
 private fun LoginScreen(
     state: LoginState,
     onAction: (LoginAction) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Column(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Center,
     ) {
         OutlinedTextField(
             value = state.email,
             onValueChange = { onAction(LoginAction.EmailChanged(it)) },
             label = { Text(text = "Email") },
             placeholder = { Text(text = "Email") },
-            isError = !state.isEmailValid
+            isError = !state.isEmailValid,
         )
         OutlinedTextField(
             value = state.password,
             onValueChange = { onAction(LoginAction.PasswordChanged(it)) },
             label = { Text(text = "Password") },
             placeholder = { Text(text = "Password") },
-            isError = !state.isPasswordValid
+            isError = !state.isPasswordValid,
         )
 
         if (state.isLoggingIn) {
             CircularProgressIndicator()
-        }
-        else {
+        } else {
             Button(onClick = { onAction(LoginAction.LoginAttempted) }) {
-                if (state.isLoggingIn)
-                    CircularProgressIndicator()
-                else
-                    Text(text = "Login")
+                if (state.isLoggingIn) CircularProgressIndicator() else Text(text = "Login")
             }
-        }    }
+        }
+    }
 }
-
-
