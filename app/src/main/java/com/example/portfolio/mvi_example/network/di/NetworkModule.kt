@@ -49,12 +49,6 @@ object NetworkModule {
                 socketTimeoutMillis = 15000
             }
 
-            // Interceptor para tratar erros Exemplo: 401, 400
-//            install(HttpCallValidator) {
-//                httpValidateResponse(navigationEventBus)
-//                exceptionResponse(navigationEventBus)
-//            }
-
             defaultRequest {
                 header("Content-Type", "application/json")
             }

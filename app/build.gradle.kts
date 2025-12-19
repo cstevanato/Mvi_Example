@@ -49,6 +49,7 @@ kotlin {
     compilerOptions {
         jvmTarget.set(JvmTarget.JVM_11)
         freeCompilerArgs.addAll(
+            "-XXLanguage:+PropertyParamAnnotationDefaultTargetMode",
             "-Xjvm-default=all",
             "-Xopt-in=kotlin.RequiresOptIn",
             "-Xcontext-parameters"
@@ -65,6 +66,7 @@ dependencies {
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.compose.material.icons.extended)
 
     // dagger hilt
     implementation(libs.hilt.navigation.compose)

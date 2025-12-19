@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
+import com.example.portfolio.mvi_example.feature.cepMvi.ui.CepScreen
 import com.example.portfolio.mvi_example.ui.theme.Mvi_ExampleTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -20,7 +21,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             Mvi_ExampleTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    AppNavigation(modifier = Modifier.padding(innerPadding))
+                    CepScreen( modifier = Modifier.padding(innerPadding))
+//                    AppNavigation(modifier = Modifier.padding(innerPadding))
                 }
             }
         }
