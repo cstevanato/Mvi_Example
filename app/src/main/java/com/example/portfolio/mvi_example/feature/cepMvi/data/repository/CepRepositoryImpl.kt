@@ -51,3 +51,20 @@ constructor(
             .toCep()
     }
 }
+
+/// outros exemplos para retry
+//var attempt = 0
+//flow {
+//    if (attempt < 2) {
+//        attempt++
+//        throw RuntimeException("Network error attempt $attempt")
+//    }
+//    emit("Success!")
+//}.retry(retries = 2) { cause ->
+//    // Predicate: retry only on RuntimeException
+//    cause is RuntimeException
+//}.collect { value ->
+//    println("Collected: $value")
+//}
+//// Output:
+//// Collected: Success!
